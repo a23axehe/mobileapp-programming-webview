@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.webkit.WebViewClient;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -17,8 +18,15 @@ public class MainActivity extends AppCompatActivity {
         setContentView((R.layout.activity_main);
 
         myWebView = findViewById(R.id.my_webview);
-    }
 
+        WebViewClient webViewClient = new MyWebViewClient();
+        myWebView.setWebViewClient(webViewClient);
+    }
+    private class MyWebViewClient extends WebViewClient{
+        public boolean shouldOverrideUrlLoading(WebView view, String url) {
+            return false;
+        }
+    }
 
     public void showExternalWebPage(){
         // TODO: Add your code for showing external web page here
