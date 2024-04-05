@@ -9,6 +9,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 public class MainActivity extends AppCompatActivity {
+    private WebView myWebView;
+
+    protected void onCreate(){
+        //attributes for the onCreate function which is important since it has a specific signature that has to be followed
+        super.onCreate(savedInstanceState);
+        setContentView((R.layout.activity_main);
+
+        myWebView = findViewById(R.id.my_webview);
+    }
+
 
     public void showExternalWebPage(){
         // TODO: Add your code for showing external web page here
