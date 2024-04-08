@@ -37,13 +37,6 @@ public class MainActivity extends AppCompatActivity {
         myWebView.loadUrl("file:///assets/internal.html");
     }
 
-    public void showExternalWebPage(){
-        // TODO: Add your code for showing external web page here
-    }
-
-    public void showInternalWebPage(){
-        // TODO: Add your code for showing internal web page here
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
