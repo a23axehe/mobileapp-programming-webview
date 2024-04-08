@@ -29,6 +29,13 @@ public class MainActivity extends AppCompatActivity {
             return false;
         }
     }
+    public void showExternalWebPage() {
+        myWebView.loadUrl("https://www.his.com");
+    }
+
+    public void showInternalWebPage() {
+        myWebView.loadUrl("file:///assets/internal.html");
+    }
 
     public void showExternalWebPage(){
         // TODO: Add your code for showing external web page here
