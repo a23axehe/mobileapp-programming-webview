@@ -3,40 +3,44 @@
 
 **Skriv din rapport här!**
 
-_Du kan ta bort all text som finns sedan tidigare_.
+Under uppgiftens gång gjordes flera saker för att ändra appens textview till en webview.
+Det första som gjordes var att ändra koden appens namn. detta gjordes i filen strings.xml och namnet ändrades till "webview app by axel".
+Sedan ändrades appen från textview till webview
+detta gjordes i filen activity_main.xml kodsegmentet som hanterade textview hittades och döptes om till webview. Nedanstående kod:
 
-## Följande grundsyn gäller dugga-svar:
+android:text="@string/app_name"
 
-- Ett kortfattat svar är att föredra. Svar som är längre än en sida text (skärmdumpar och programkod exkluderat) är onödigt långt.
-- Svaret skall ha minst en snutt programkod.
-- Svaret skall inkludera en kort övergripande förklarande text som redogör för vad respektive snutt programkod gör eller som svarar på annan teorifråga.
-- Svaret skall ha minst en skärmdump. Skärmdumpar skall illustrera exekvering av relevant programkod. Eventuell text i skärmdumpar måste vara läsbar.
-- I de fall detta efterfrågas, dela upp delar av ditt svar i för- och nackdelar. Dina för- respektive nackdelar skall vara i form av punktlistor med kortare stycken (3-4 meningar).
+Togs bort eftersom webview saknar textelement. utöver det lämnades det som fanns i textview fliken orört eftersom det gick att återanvända.
+Det sista som gjorde i dokumentet activity_main.xml var att skapa ett id för den nya webviewen detta gjordes i koden:
 
-Programkod ska se ut som exemplet nedan. Koden måste vara korrekt indenterad då den blir lättare att läsa vilket gör det lättare att hitta syntaktiska fel.
+android:id="@+id/my_webview".
 
-```
-function errorCallback(error) {
-    switch(error.code) {
-        case error.PERMISSION_DENIED:
-            // Geolocation API stöds inte, gör något
-            break;
-        case error.POSITION_UNAVAILABLE:
-            // Misslyckat positionsanrop, gör något
-            break;
-        case error.UNKNOWN_ERROR:
-            // Okänt fel, gör något
-            break;
-    }
-}
-```
+Sedan möjliggjordes internetåtkomst för appen genom ändringar i filen "AdnroidManifest.xml" genom att lägga tilll koden
 
-Bilder läggs i samma mapp som markdown-filen.
+uses-permission android:name="android.permission.INTERNET"
 
-![](android.png)
+Sedan gjordes ändringar i filen "MainActivity.java". Först så lades det till kod i metoden "onCreate()" och sedan skapades 
+en ny klass för "myWebViewClient" vilket utökar den befintliga WebviewClient. Den kod som lades till var följande:
 
-Läs gärna:
+myWebView = findViewById(R.id.my_webview);
 
-- Boulos, M.N.K., Warren, J., Gong, J. & Yue, P. (2010) Web GIS in practice VIII: HTML5 and the canvas element for interactive online mapping. International journal of health geographics 9, 14. Shin, Y. &
-- Wunsche, B.C. (2013) A smartphone-based golf simulation exercise game for supporting arthritis patients. 2013 28th International Conference of Image and Vision Computing New Zealand (IVCNZ), IEEE, pp. 459–464.
-- Wohlin, C., Runeson, P., Höst, M., Ohlsson, M.C., Regnell, B., Wesslén, A. (2012) Experimentation in Software Engineering, Berlin, Heidelberg: Springer Berlin Heidelberg.
+myWebView.getSettings().setJavaScriptEnabled(true);
+
+WebViewClient webViewClient = new MyWebViewClient();
+myWebView.setWebViewClient(webViewClient);
+
+Raderna kod gör att först så hämtas id:t för det som sparades i activity_main.xml filen innan. Denna kod sparas i id:t som i sin tur sparas i min variabel
+"myWebView". Sedan möjligörs javascript hantering för myWebView. En anpassad WebViewClient skapades från den tidigare nämnda klassen 
+MyWebViewClient och döptes till webViewClient för att hantera webbsidornas visning och laddning. 
+Genom dessa åtgärder förbereds WebView för att visa både interna och externa webbsidor. 
+De interna och externa websidorna specificerades genom koden:
+
+myWebView.loadUrl("hemsidans url")
+
+de hemsidor som användes var djurgården hockeys hemsida som extern webbsida. Som intern hemsida gjordes ett väldigt enkelt html dokument som placerades i en asset mapp
+och döptes till "internal.html".
+Det sista som gjordes var att kalla på metoderna "showExternalWebPage()" och "showInternalWebPage()" i metoden
+"onOptionsItemSelected(MenuItem item)". När allt var gjort såg appens interna och externa webbsidor ut på följande sätt:
+![img.png](img.png)
+![img_1.png](img_1.png)
+
