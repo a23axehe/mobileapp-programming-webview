@@ -12,18 +12,6 @@ import androidx.appcompat.widget.Toolbar;
 public class MainActivity extends AppCompatActivity {
     private WebView myWebView;
 
-    protected void onCreate(){
-        //attributes for the onCreate function which is important since it has a specific signature that has to be followed
-        super.onCreate(savedInstanceState);
-        setContentView((R.layout.activity_main);
-
-        myWebView = findViewById(R.id.my_webview);
-
-        myWebView.getSettings().setJavaScriptEnabled(true);
-
-        WebViewClient webViewClient = new MyWebViewClient();
-        myWebView.setWebViewClient(webViewClient);
-    }
     private class MyWebViewClient extends WebViewClient{
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
             return false;
@@ -44,7 +32,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        myWebView = findViewById(R.id.my_webview);
 
+        myWebView.getSettings().setJavaScriptEnabled(true);
+
+        WebViewClient webViewClient = new MyWebViewClient();
+        myWebView.setWebViewClient(webViewClient);
         /*
         * Rename your App. Tip: Values->Strings
         * Enable Internet access for your App. Tip: Manifest
