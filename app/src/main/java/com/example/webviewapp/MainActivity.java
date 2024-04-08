@@ -18,11 +18,11 @@ public class MainActivity extends AppCompatActivity {
         }
     }
     public void showExternalWebPage() {
-        myWebView.loadUrl("https://www.his.com");
+        myWebView.loadUrl("https://www.difhockey.se/");
     }
 
     public void showInternalWebPage() {
-        myWebView.loadUrl("file:///assets/internal.html");
+        myWebView.loadUrl("file:///android_asset/internal.html");
     }
 
 
